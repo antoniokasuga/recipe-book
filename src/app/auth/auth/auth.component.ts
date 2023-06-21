@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
@@ -67,6 +67,12 @@ export class AuthComponent implements OnInit, OnDestroy {
     this.error = null
   }
 
+  ngOnDestroy(): void {
+    if (this.closeSub) {
+      this.closeSub.unsubscribe()
+    }
+  }
+
   private showErrorAlert(message: string) {
 
     const hostViewContainerRef = this.alertHost.viewContainerRef
@@ -78,11 +84,5 @@ export class AuthComponent implements OnInit, OnDestroy {
       this.closeSub.unsubscribe()
       hostViewContainerRef.clear()
     })
-  }
-
-  ngOnDestroy(): void {
-    if (this.closeSub) {
-      this.closeSub.unsubscribe()
-    }
   }
 }

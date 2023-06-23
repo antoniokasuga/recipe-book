@@ -1,10 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { AlertComponent } from '../shared/alert/alert/alert.component';
-import { PlaceholderDirective } from '../shared/placeholder/placeholder.directive';
-import { AuthResponseData, AuthService } from './auth.service';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {Router} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+import {AlertComponent} from '../shared/alert/alert/alert.component';
+import {PlaceholderDirective} from '../shared/placeholder/placeholder.directive';
+import {AuthResponseData, AuthService} from './auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -16,7 +16,7 @@ export class AuthComponent implements OnInit, OnDestroy {
   isLoginMode = true
   isLoading = false
   error: string = null
-  @ViewChild(PlaceholderDirective, { static: false }) alertHost: PlaceholderDirective;
+  @ViewChild(PlaceholderDirective, {static: false}) alertHost: PlaceholderDirective;
 
   private closeSub: Subscription
 

@@ -1,6 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
 import { Ingredient } from '../../shared/ingredient.model';
-import { addIngredient, addIngredients } from './shopping-list.actions';
+import {
+  addIngredient,
+  addIngredients,
+  deleteIngredient,
+  startEdit,
+  stopEdit,
+  updateIngredient,
+} from './shopping-list.actions';
 
 export interface State {
   ingredients: Ingredient[];
@@ -32,4 +39,45 @@ export const shoppingListReducer = createReducer(
       ...action.ingredients,
     ],
   })),
+  on(updateIngredient, (state, action) => {
+    const ingredient = state.ingredients[state.editedIngredientIndex]
+    const updatedIngredient = {
+      ...ingredient,
+      ...action.ingredient,
+    }
+    const updatedIngredients = [...state.ingredients]
+    updatedIngredients[state.editedIngredientIndex] = updatedIngredient
+    return {
+      ...state,
+      ingredients: updatedIngredients,
+      editedIngredientIndex: -1,
+      editedIngredient: null,
+    }
+  }),
+  on(deleteIngredient, (state) => {
+    return {
+      ...state,
+      ingredients: state.ingredients.filter((ig, igIndex) => {
+        return igIndex !== state.editedIngredientIndex;
+      }),
+      editedIngredientIndex: -1,
+      editedIngredient: null,
+    }
+  }),
+  on(startEdit, (state, action) => {
+    return {
+      ...state,
+      editedIngredientIndex: action.index,
+      editedIngredient: {
+        ...state.ingredients[action.index],
+      },
+    };
+  }),
+  on(stopEdit, (state) => {
+    return {
+      ...state,
+      editedIngredient: null,
+      editedIngredientIndex: -1,
+    };
+  }),
 )

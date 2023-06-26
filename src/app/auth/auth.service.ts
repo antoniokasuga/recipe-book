@@ -1,10 +1,10 @@
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
-import {BehaviorSubject, tap, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {User} from './user.model';
-import {environment} from "../../environments/environment";
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { BehaviorSubject, tap, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+import { User } from './user.model';
 
 export interface AuthResponseData {
   idToken: string;
@@ -85,7 +85,8 @@ export class AuthService {
 
     if (loadedUser.token) {
       this.user.next(loadedUser)
-      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime()
+      const expirationDuration = new Date(
+        userData._tokenExpirationDate).getTime() - new Date().getTime()
       this.autoLogout(expirationDuration)
     }
   }

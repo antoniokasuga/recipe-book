@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { DataStorageService } from '../shared/data-storage.service';
-import { Recipe } from './recipe.model';
 import { RecipeService } from './recipe.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RecipesResolver  {
+export class RecipesResolver {
   constructor(
     private dataStorageService: DataStorageService,
     private recipeService: RecipeService,

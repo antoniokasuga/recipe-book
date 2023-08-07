@@ -4,7 +4,7 @@ import { addRecipe, deleteRecipe, setRecipes, updateRecipe } from "./recipe.acti
 
 
 export interface State {
-  recipes: Recipe[];
+  recipes: Recipe[]
 }
 
 const initialState: State = {

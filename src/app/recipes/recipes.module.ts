@@ -9,6 +9,8 @@ import { RecipeListComponent } from './recipe-list/recipe-list.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { RecipesComponent } from './recipes.component';
+import { StoreModule } from "@ngrx/store";
+import { recipeReducer } from "./store/recipe.reducer";
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { RecipesComponent } from './recipes.component';
     ReactiveFormsModule,
     RouterModule,
     RecipesRoutingModule,
+    StoreModule.forFeature('recipes', recipeReducer)
   ],
 })
 export class RecipesModule {

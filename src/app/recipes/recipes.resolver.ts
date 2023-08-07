@@ -17,7 +17,6 @@ export class RecipesResolver {
   }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-
     return this.store.select('recipes').pipe(
       take(1),
       map(recipesState => {
